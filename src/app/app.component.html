@@ -14,6 +14,12 @@
     <div class="card-container">
       <app-pokemon-card [pokemon]="pokemon" *ngFor="let pokemon of (pokemon$ | async)"></app-pokemon-card>
     </div>
+    <mat-paginator 
+      [length]="totalCount" 
+      [pageSize]="pageSize" 
+      [pageSizeOptions]="pageSizeOptions" 
+      (page)="pageEvent($event)">
+    </mat-paginator>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
