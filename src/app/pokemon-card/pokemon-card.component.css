@@ -9,4 +9,16 @@
 
 .pokemon-card img {
     display: block;
+    position: absolute;
+}
+
+.pokemonId {
+    /* font-weight: 600; */
+    display: block;
+    width: 100%;
+    color: white;
+    position: relative;
+    bottom: 51px;
+    padding-left: 15px;
+    text-align: left;
 }

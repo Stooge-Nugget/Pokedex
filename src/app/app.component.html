@@ -1,23 +1,27 @@
 <mat-sidenav-container class="side-container">
   <mat-sidenav #sidenav class="side-menu" mode="side" [(opened)]="opened">
-    <mat-toolbar>Pokédex</mat-toolbar>
-    Pokemon
-    About
+    <mat-toolbar class="toolbar">Pokédex</mat-toolbar>
+    <ul class="menu-links">
+      <li>Pokemon</li>
+      <li>About</li>
+    </ul>
   </mat-sidenav>
 
   <mat-sidenav-content class="main-content">
     <mat-toolbar>
-      <button mat-button>
+      <button mat-icon-button>
         <mat-icon (click)='toggleSideNav()'>menu</mat-icon>
       </button>
+      <div class="logo-container">
+        <img [src]="logoSrc" alt="en:Game Freak, en:Nintendo, en:The Pokémon Company [Public domain]">
+      </div>
     </mat-toolbar>
     <div class="card-container">
+      <mat-progress-bar mode="determinate" *ngIf="loading" [value]="this.pokemonApiSvc.progress | async">
+      </mat-progress-bar>
       <app-pokemon-card [pokemon]="pokemon" *ngFor="let pokemon of (pokemon$ | async)"></app-pokemon-card>
     </div>
-    <mat-paginator 
-      [length]="totalCount" 
-      [pageSize]="pageSize" 
-      [pageSizeOptions]="pageSizeOptions" 
+    <mat-paginator [length]="totalCount" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
       (page)="pageEvent($event)">
     </mat-paginator>
   </mat-sidenav-content>
