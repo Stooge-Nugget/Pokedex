@@ -1,4 +1,4 @@
-<div class="pokemon-card" [ngStyle]="backgroundStyle">
+<div class="pokemon-card" [ngStyle]="backgroundStyle" (click)="selectPokemon()">
   <span class="pokemon-id">{{pokemon.id}}</span>
   <img [src]="pokemon.sprites.front_default" alt="pokemon.name">
   <span class="pokemon-name">{{pokemon.name}}</span>

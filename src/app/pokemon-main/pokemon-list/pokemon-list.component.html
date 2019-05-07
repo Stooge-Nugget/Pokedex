@@ -1,7 +1,11 @@
 <div class="card-container">
   <mat-progress-bar mode="determinate" *ngIf="loading" [value]="this.pokemonApiSvc.progress | async">
   </mat-progress-bar>
-  <app-pokemon-card [pokemon]="pokemon" *ngFor="let pokemon of (pokemon$ | async)"></app-pokemon-card>
+  <app-pokemon-card 
+  *ngFor="let pokemon of (pokemon$ | async)"
+  [pokemon]="pokemon"
+  (pokemonSelected)="handleSelectedPokemon($event)"
+  ></app-pokemon-card>
 </div>
 <mat-paginator [length]="totalCount" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
   (page)="pageEvent($event)">

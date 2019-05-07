@@ -31,6 +31,10 @@ export class PokemonListComponent implements OnInit {
       .pipe(tap(p => console.log(p)));
   }
 
+  handleSelectedPokemon(pokemonId: number) {
+    // console.log(pokemonId);
+  }
+
   pageEvent(event) {
     console.log(event);
     //offset=20&limit=20

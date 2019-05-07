@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { pokemon, types, type } from '../pokemon.model';
 
 @Component({
@@ -7,7 +7,7 @@ import { pokemon, types, type } from '../pokemon.model';
   styleUrls: ['./pokemon-card.component.css']
 })
 export class PokemonCardComponent implements OnInit {
-  private pokemonInfo;
+  private pokemonInfo: pokemon;
   backgroundStyle;
 
   @Input()
@@ -16,6 +16,8 @@ export class PokemonCardComponent implements OnInit {
     this.backgroundStyle = this.setBackground(value.types);
   }
 
+  @Output() pokemonSelected = new EventEmitter<number>();
+
   get pokemon() {
     return this.pokemonInfo;
   }
@@ -23,6 +25,10 @@ export class PokemonCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  selectPokemon() {
+    this.pokemonSelected.emit(this.pokemonInfo.id);
   }
 
   private setBackground(types: types[]) {
