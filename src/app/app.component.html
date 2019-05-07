@@ -16,15 +16,9 @@
         <img [src]="logoSrc" alt="en:Game Freak, en:Nintendo, en:The Pokémon Company [Public domain]">
       </div>
     </mat-toolbar>
-    <div class="card-container">
-      <mat-progress-bar mode="determinate" *ngIf="loading" [value]="this.pokemonApiSvc.progress | async">
-      </mat-progress-bar>
-      <app-pokemon-card [pokemon]="pokemon" *ngFor="let pokemon of (pokemon$ | async)"></app-pokemon-card>
-    </div>
-    <mat-paginator [length]="totalCount" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-      (page)="pageEvent($event)">
-    </mat-paginator>
+
+    <!-- <router-outlet></router-outlet> -->
+
+    <app-pokemon-list></app-pokemon-list>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<!-- <router-outlet></router-outlet> -->

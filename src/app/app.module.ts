@@ -10,30 +10,24 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatIconModule,
-  MatPaginatorModule,
   MatButtonModule
 } from '@angular/material';
-import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { PokemonMainModule } from './pokemon-main/pokemon-main.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PokemonCardComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CommonModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    MatPaginatorModule,
     MatButtonModule,
     MatProgressBarModule,
-    HttpClientModule
+    HttpClientModule,
+    PokemonMainModule
   ],
   providers: [],
   bootstrap: [AppComponent]
