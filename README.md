@@ -16,6 +16,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * Offline cache
 * Maybe customise the theme
 * Correct for mobile if not already
+* List view
 
 ## Development server
 

@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatProgressBarModule,
   MatSidenavModule,
   MatToolbarModule,
   MatIconModule,
@@ -25,7 +24,6 @@ import { PokemonMainModule } from './pokemon-main/pokemon-main.module';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatProgressBarModule,
     HttpClientModule,
     PokemonMainModule
   ],

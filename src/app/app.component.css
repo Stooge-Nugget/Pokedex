@@ -29,10 +29,27 @@
 .toolbar {
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
-  padding-left: 39px;
+  padding-left: 20px;
   }
 
-.menu-links li {
-  list-style-type: none;
+.menu-links {
   margin-top: 20px;
+}
+
+.menu-links button {
+  display: block;
+  border: none;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  height: 44px;
+  background: none;
+}
+
+.menu-links button:hover {
+  background: #f2f2f2;
+}
+
+.menu-links button:focus {
+  outline:0;
 }
