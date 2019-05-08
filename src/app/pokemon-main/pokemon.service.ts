@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, merge, Subject } from 'rxjs';
-import { pokemonQuery, pokemon } from './pokemon.model';
+import { PokemonQuery, Pokemon } from './pokemon.model';
 import { tap, reduce, delay, map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PokemonApiService {
   progress;
 
@@ -14,12 +12,12 @@ export class PokemonApiService {
     this.progress = new Subject<number>().pipe(delay(250));
   }
 
-  getPokemon(pokemonQuery: pokemonQuery) {
+  getPokemon(pokemonQuery: PokemonQuery) {
     const queries = pokemonQuery.results.map(r => this.httpClient.get(r.url));
     let completed = 0;
     return merge(...queries).pipe(
       tap(() => this.progress.next(((++completed / queries.length) * 100) | 0)),
-      reduce((acc: pokemon[], pokemon: pokemon) => {
+      reduce((acc: Pokemon[], pokemon: Pokemon) => {
         acc.push(pokemon);
         return acc
       }, []),
@@ -28,8 +26,8 @@ export class PokemonApiService {
     );
   }
 
-  getPokemonList(providedUrl: string = null): Observable<pokemonQuery> {
+  getPokemonList(providedUrl: string = null): Observable<PokemonQuery> {
     const url = !!providedUrl ? providedUrl : 'https://pokeapi.co/api/v2/pokemon?limit=50';
-    return this.httpClient.get<pokemonQuery>(url);
+    return this.httpClient.get<PokemonQuery>(url);
   }
 }

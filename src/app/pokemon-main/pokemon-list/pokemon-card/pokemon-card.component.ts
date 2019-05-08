@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { pokemon, types, type } from '../pokemon.model';
+import { Pokemon, PokemonTypes, PokemonType } from '../../pokemon.model';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -7,11 +7,11 @@ import { pokemon, types, type } from '../pokemon.model';
   styleUrls: ['./pokemon-card.component.css']
 })
 export class PokemonCardComponent implements OnInit {
-  private pokemonInfo: pokemon;
+  private pokemonInfo: Pokemon;
   backgroundStyle;
 
   @Input()
-  set pokemon(value: pokemon) {
+  set pokemon(value: Pokemon) {
     this.pokemonInfo = value;
     this.backgroundStyle = this.setBackground(value.types);
   }
@@ -31,7 +31,7 @@ export class PokemonCardComponent implements OnInit {
     this.pokemonSelected.emit(this.pokemonInfo.id);
   }
 
-  private setBackground(types: types[]) {
+  private setBackground(types: PokemonTypes[]) {
     const primary = this.getColour(types.find(t => t.slot === 1).type);
     const typeTwo = types.find(t => t.slot === 2);
     const secondary = !!typeTwo ? this.getColour(typeTwo.type) : '';
@@ -39,7 +39,7 @@ export class PokemonCardComponent implements OnInit {
     return !!typeTwo ? { 'background-image': `linear-gradient(to right, #${primary} 50%, #${secondary} 50%)` } : { 'background-color': `#${primary}` }
   }
 
-  private getColour(type: type): string {
+  private getColour(type: PokemonType): string {
     switch (type.name) {
       case 'grass':
         return '78C850'

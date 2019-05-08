@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap, exhaustMap } from 'rxjs/operators';
 import { PokemonApiService } from '../pokemon.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -24,7 +25,7 @@ export class PokemonListComponent implements OnInit {
 
   private paginationData;
 
-  constructor(private pokemonApiSvc: PokemonApiService) { }
+  constructor(private pokemonApiSvc: PokemonApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.pokemon$ = this.getPokemon()
@@ -32,7 +33,7 @@ export class PokemonListComponent implements OnInit {
   }
 
   handleSelectedPokemon(pokemonId: number) {
-    // console.log(pokemonId);
+    this.router.navigate([`pokemon/${pokemonId}`])
   }
 
   pageEvent(event) {
@@ -41,8 +42,8 @@ export class PokemonListComponent implements OnInit {
     const next = event.pageIndex > event.previousPageIndex;
     const url: string = next ? this.paginationData.next : this.paginationData.prev;
     // url = url.replace('limit=20');
-    this.pokemon$ = this.getPokemon(url)
-      .pipe(tap(p => console.log(p)));
+    this.pokemon$ = this.getPokemon(url);
+      // .pipe(tap(p => console.log(p)));
   }
 
   private getPokemon(url: string = null): Observable<any> {

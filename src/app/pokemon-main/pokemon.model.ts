@@ -1,16 +1,16 @@
-export interface pokemonQuery {
+export interface PokemonQuery {
     count: number;
     next: string;
     previous: string;
-    results: pokemonResult[];
+    results: PokemonResult[];
 }
 
-export interface pokemonResult {
+export interface PokemonResult {
     name: string;
     url: string;
 }
 
-export interface pokemon {
+export interface Pokemon {
     abilities: [];
     base_experience: number;
     forms: [];
@@ -23,29 +23,29 @@ export interface pokemon {
     moves: [];
     name: string;
     order: number;
-    species: species;
-    sprites: sprites;
+    species: PokemonSpecies;
+    sprites: Sprites;
     stats: [];
-    types: types[];
+    types: PokemonTypes[];
     weight: 69
 }
 
-export interface types {
+export interface PokemonTypes {
     slot: number;
-    type: type;
+    type: PokemonType;
 }
 
-export interface type {
+export interface PokemonType {
     name: string
     url: string;
 }
 
-interface species {
+interface PokemonSpecies {
     name: string;
     url: string;
 }
 
-interface sprites {
+interface Sprites {
     back_default: string;
     back_female: string;
     back_shiny: string;
