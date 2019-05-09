@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, merge, Subject } from 'rxjs';
+import { Observable, merge, Subject, timer } from 'rxjs';
 import { PokemonQuery, Pokemon } from './pokemon.model';
-import { tap, reduce, delay, map } from 'rxjs/operators';
+import { tap, reduce, map, debounce } from 'rxjs/operators';
 
 @Injectable()
 export class PokemonApiService {
   progress;
 
   constructor(private httpClient: HttpClient) {
-    this.progress = new Subject<number>().pipe(delay(250));
+    this.progress = new Subject<number>().pipe(debounce(() => timer(250)));
   }
 
   getPokemon(pokemonQuery: PokemonQuery) {
