@@ -1,0 +1,18 @@
+<app-detail-card heading="Evolution" width="fit-content">
+  <div class="evolution-branch">
+    <div
+      class="evolution-section"
+      *ngFor="let pokemon of evolutionChain; let lastItem = last"
+    >
+      <div class="pokemon">
+        <img
+          [src]="pokemon.sprite"
+          [alt]="pokemon.name"
+          class="evolution-sprite"
+        />
+        <span>{{ pokemon.name }}</span>
+      </div>
+      <div *ngIf="!lastItem" class="arrow-right"></div>
+    </div>
+  </div>
+</app-detail-card>

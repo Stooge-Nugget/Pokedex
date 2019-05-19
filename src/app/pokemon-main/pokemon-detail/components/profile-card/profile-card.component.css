@@ -1,0 +1,45 @@
+img {
+  position: absolute;
+  image-rendering: pixelated;
+  margin: auto;
+  width: 100%;
+}
+
+.sprite {
+  width: 300px;
+  height: 300px;
+}
+
+.pokemon-name {
+  font-weight: 500;
+  color: #4F5C69;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  margin-left: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border-width: 3px;
+  border-style: solid;
+}
+
+.profile-divider {
+  border: none;
+  border-right: 1px solid;
+  height: 140px;
+  width: 1px;
+}
+
+.profile-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-text {
+  width: 350px;
+}

@@ -1,0 +1,17 @@
+<app-detail-card heading="Metrics" width="430px">
+    <div class="metric-content">
+        <ng-container *ngFor="let metric of metrics; let lastItem=last">
+            <div class="metric">
+                <div class="metric-heading">
+                    <img [src]="metric.icon" [alt]="metric.iconText" class="metric-icon">
+                    <span>{{metric.name}}</span>
+                </div>
+                <div class="metric-data">
+                    <span class="metric-value">{{metric.value | number: metric.format}} </span>
+                    <span class="metric-symbol">{{metric.symbol}}</span>
+                </div>
+            </div>
+            <div class="metric-divider" *ngIf="!lastItem"></div>
+        </ng-container>
+    </div>
+</app-detail-card>

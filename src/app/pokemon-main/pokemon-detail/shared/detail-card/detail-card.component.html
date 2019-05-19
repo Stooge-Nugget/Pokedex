@@ -1,0 +1,8 @@
+<div class="pokemon-card" [style.width]="width">
+    <div *ngIf="!!heading" class="card-heading">
+        <span>{{heading}}</span>
+    </div>
+    <!-- wrap content? -->
+    <ng-content></ng-content>
+    <!-- class="detail-card-content" -->
+</div>

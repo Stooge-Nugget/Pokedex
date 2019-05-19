@@ -1,0 +1,15 @@
+<app-detail-card heading="Stats" width="450px">
+  <div class="stats-content">
+    <div class="stat" *ngFor="let stat of stats">
+      <div class="stat-heading">
+        <img [src]="stat.icon" [alt]="stat.iconText" class="stat-icon" />
+        <span>{{ stat.name }}</span>
+      </div>
+      <div class="stat-bar" [style.width]="statBarWidth">
+        <div class="value-bar" [style.width]='getValueBarWidth(stat)'>
+          {{ stat.baseStat }}
+        </div>
+      </div>
+    </div>
+  </div>
+</app-detail-card>

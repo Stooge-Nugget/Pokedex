@@ -1,16 +1,10 @@
-<mat-card class="pokemon-card">
-  <mat-card-header>
-    <mat-card-title>{{pokemon.name}}</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
-  <mat-card-content>
-    <p>
-      {{description.flavor_text}}
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+<!-- grid layout for cards? -->
+<app-profile-card
+  [pokemon]="pokemon"
+  [species]="species"
+  [description]="description"
+></app-profile-card>
+<app-metrics-card [metrics]="metrics"></app-metrics-card>
+<app-gender-card *ngIf="!!genderRatio" [genderRatio]="genderRatio"></app-gender-card>
+<app-stats-card [stats]="stats"></app-stats-card>
+<app-evolution-card [evolutionChain]="evolutionChain"></app-evolution-card>

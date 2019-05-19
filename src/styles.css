@@ -1,7 +1,14 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,600');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400|Roboto:300,400,500,900');
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
 html {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+.light-text {
+    font-weight: 300;
+}
+
+.extra-bold-text {
+    font-weight: 900;
 }

@@ -5,10 +5,15 @@ import { PokemonDetailComponent } from './pokemon-main/pokemon-detail/pokemon-de
 import { PokemonResolver } from './pokemon-main/pokemon.resolver';
 
 const routes: Routes = [
-  { path: 'pokemon', component: PokemonListComponent },
+  {
+    path: 'pokemon',
+    component: PokemonListComponent,
+    data: { animation: 'Pokemon' },
+  },
   {
     path: 'pokemon/:id',
     component: PokemonDetailComponent,
+    data: { animation: 'PokemonDetail' },
     resolve: {
       pokemonData: PokemonResolver
     }

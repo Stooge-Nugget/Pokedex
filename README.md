@@ -20,6 +20,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * Line everything to a grid design
 * Animations
 * Swap pagination for continuous scroll (load in chunks based on view/scroll height)
+* Add pokemon list tile size option
+* Add Pokemon side nav list to detail view
 
 ## Development server
 

@@ -1,0 +1,30 @@
+.gender-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gender-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.gender-data {
+    color: #5E5E5E;
+    font-weight: 400;
+}
+
+.gender-value {
+    font-size: 30pt;
+}
+
+.gender-symbol {
+    font-size: 20pt;
+}
+
+.gender-divider {
+    border: none;
+    border-right: .1px solid rgb(199, 199, 199);
+    height: 50px;
+    width: 1px;
+}

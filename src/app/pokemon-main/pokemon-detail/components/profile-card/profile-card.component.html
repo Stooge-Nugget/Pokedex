@@ -1,0 +1,26 @@
+<app-detail-card width="720px">
+  <div class="pokemon-name">
+    <span>#{{pokemon.id | number:'3.0'}} • {{pokemon.name | uppercase}}</span>
+    <div class="circle" [style.border-color]="typeOne"></div>
+    <div class="circle" [style.border-color]="typeTwo"></div>
+  </div>
+  <div class="profile-content">
+    <div class="sprite">
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="sprite">
+      <!-- <svg #svgContainer viewBox="0 0 100 100">
+        <image [attr.xlink:href]="pokemon.sprites.front_default"/>
+      </svg> -->
+    </div>
+    <div class="profile-divider" [style.border-color]="typeOne"></div>
+    <div class="profile-text">
+      <span>Abilities</span>
+      <p class="light-text">
+        {{abilities}}
+      </p>
+      <span>Summary</span>
+      <p class="light-text">
+        {{description.flavor_text}}
+      </p>
+    </div>
+  </div>
+</app-detail-card>
