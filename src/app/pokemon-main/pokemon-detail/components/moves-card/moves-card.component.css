@@ -1,0 +1,35 @@
+span {
+  min-width: 20%;
+}
+
+.row-heading {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #b3b7bc;
+  box-sizing: border-box;
+  padding-left: 20px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.data-row {
+  /* plus app-detail-card (padding * 2) padding, accounting for -20px margin below */
+  width: calc(100% + 40px);
+  height: 50px;
+  /* minus app-detail-card right padding */
+  margin-left: -20px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-left: 40px;
+  border-top: 1px solid #7f7f7f5c;
+  border-bottom: 1px solid #7f7f7f5c;
+  align-items: center;
+}
+
+/* .divider {
+  width: 100%;
+  border-top: 1px solid #7f7f7f5c;
+  height: 1px;
+} */

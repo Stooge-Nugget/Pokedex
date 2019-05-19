@@ -1,0 +1,14 @@
+<app-detail-card heading="heading" width="80%">
+  <div class="row row-heading">
+    <div *ngFor="let heading of rowHeadings" class="heading" [style.width]="fieldWidth"
+      (click)="handleClickSort(heading.name)">
+      <span>{{heading.name | uppercase}}</span>
+      <div *ngIf="selectedHeading === heading.name" [ngClass]="getArrayClass()"></div>
+    </div>
+  </div>
+  <div *ngFor="let row of dataRows" class="row data-row">
+    <span *ngFor="let prop of row" [ngStyle]="setColumnStyle(prop.fieldId, prop.value)">
+      {{prop.value}}
+    </span>
+  </div>
+</app-detail-card>

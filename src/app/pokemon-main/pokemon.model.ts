@@ -81,6 +81,22 @@ export interface Stat extends statBase {
   iconText: string;
 }
 
+export interface Move {
+  id: number;
+  name: string;
+  accuracy: number;
+  effect_chance: number;
+  pp: number;
+  priority: number;
+  power: number;
+  type: NameUrl;
+}
+
+interface NameUrl {
+  name: string;
+  url: string;
+}
+
 interface statBase {
   name: string;
   baseStat: number;

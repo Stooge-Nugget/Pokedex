@@ -25,25 +25,29 @@ export class PokemonListComponent implements OnInit {
 
   private paginationData;
 
-  constructor(private pokemonApiSvc: PokemonApiService, private router: Router) { }
+  constructor(
+    private pokemonApiSvc: PokemonApiService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.pokemon$ = this.getPokemon()
-      .pipe(tap(p => console.log(p)));
+    this.pokemon$ = this.getPokemon();
   }
 
   handleSelectedPokemon(pokemonId: number) {
-    this.router.navigate([`pokemon/${pokemonId}`])
+    this.router.navigate([`pokemon/${pokemonId}`]);
   }
 
   pageEvent(event) {
     console.log(event);
     //offset=20&limit=20
     const next = event.pageIndex > event.previousPageIndex;
-    const url: string = next ? this.paginationData.next : this.paginationData.prev;
+    const url: string = next
+      ? this.paginationData.next
+      : this.paginationData.prev;
     // url = url.replace('limit=20');
     this.pokemon$ = this.getPokemon(url);
-      // .pipe(tap(p => console.log(p)));
+    // .pipe(tap(p => console.log(p)));
   }
 
   private getPokemon(url: string = null): Observable<any> {
@@ -55,13 +59,12 @@ export class PokemonListComponent implements OnInit {
           next: res.next,
           prev: res.previous,
           resultCount: res.results.length
-        }
+        };
       }),
       exhaustMap(res => {
         return this.pokemonApiSvc.getPokemon(res);
       }),
-      tap(() => this.loading = false)
+      tap(() => (this.loading = false))
     );
   }
-
 }

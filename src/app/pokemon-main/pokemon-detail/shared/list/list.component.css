@@ -1,0 +1,53 @@
+span {
+  margin-right: 10px;
+}
+
+.row {
+  /* plus app-detail-card (padding * 2) padding, accounting for -20px margin below */
+  width: calc(100% + 40px);
+  /* minus app-detail-card right padding */
+  margin-left: -20px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-left: 40px;
+}
+
+.row-heading {
+  color: #b3b7bc;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  -webkit-user-select: none; /* Chrome 49+ */
+  -moz-user-select: none; /* Firefox 43+ */
+  -ms-user-select: none; /* No support yet */
+  user-select: none;
+}
+
+.data-row {
+  height: 50px;
+  border-top: 1px solid #7f7f7f5c;
+  align-items: center;
+  color: #4f5c69;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #cbcfd3;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #cbcfd3;
+}

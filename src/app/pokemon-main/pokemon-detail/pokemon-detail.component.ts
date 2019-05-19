@@ -7,7 +7,8 @@ import {
   StatNameDataMap,
   StatName,
   StatIcons,
-  EvolutionChain
+  EvolutionChain,
+  Move
 } from '../pokemon.model';
 
 const assetBase = 'assets/svg-icons/';
@@ -24,6 +25,7 @@ export class PokemonDetailComponent implements OnInit {
   genderRatio: { male: number; female: number };
   metrics = [];
   stats: Stat[];
+  moves: Move[];
   evolutionChain: EvolutionChain[];
 
   constructor(private route: ActivatedRoute) {}
@@ -31,6 +33,7 @@ export class PokemonDetailComponent implements OnInit {
   ngOnInit() {
     this.pokemon = this.route.snapshot.data.pokemonData.pokemon;
     this.species = this.route.snapshot.data.pokemonData.species;
+    this.moves = this.route.snapshot.data.pokemonData.moves;
     this.evolutionChain = this.route.snapshot.data.pokemonData.evolutionChain;
     let flavourText: any[] = this.species.flavor_text_entries;
     this.description = flavourText.find(f => f.language.name === 'en');
