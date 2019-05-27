@@ -13,16 +13,16 @@ import { PokemonApiService } from './pokemon.service';
 @Injectable()
 export class PokemonResolver
   implements
-    Resolve<{
-      pokemon: Pokemon;
-      species: Species;
-      moves: Move[];
-      evolutionChain: EvolutionChain[];
-    }> {
+  Resolve<{
+    pokemon: Pokemon;
+    species: Species;
+    moves: Move[];
+    evolutionChain: EvolutionChain[];
+  }> {
   constructor(
     private httpClient: HttpClient,
     private pokemonApiSvc: PokemonApiService
-  ) {}
+  ) { }
 
   // Add type
   resolve(
@@ -34,13 +34,11 @@ export class PokemonResolver
     moves: Move[];
     evolutionChain: EvolutionChain[];
   }> {
-    return this.getPokemonById(route.params.id);
+    return this.loadPokemonDetails(route.params.id);
   }
 
-  private getPokemonById(pokemonId: number) {
-    // Temporary, use store and db to check cache for pokemon
-    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
-    return this.httpClient.get<Pokemon>(url).pipe(
+  private loadPokemonDetails(pokemonId: number) {
+    return this.pokemonApiSvc.getPokemonById(pokemonId).pipe(
       exhaustMap(pokemon => {
         return this.pokemonApiSvc.getPokemonSpecies(pokemon);
       }),

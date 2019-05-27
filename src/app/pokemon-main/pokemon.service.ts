@@ -26,6 +26,11 @@ export class PokemonApiService {
     );
   }
 
+  getPokemonById(pokemonId: number) {
+    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
+    return this.httpClient.get<Pokemon>(url);
+  }
+
   getPokemonList(providedUrl: string = null): Observable<PokemonQuery> {
     const url = !!providedUrl ? providedUrl : 'https://pokeapi.co/api/v2/pokemon?limit=50';
     return this.httpClient.get<PokemonQuery>(url);
