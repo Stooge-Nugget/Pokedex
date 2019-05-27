@@ -7,16 +7,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * Image loading
 * Image loading effect/placeholder
 * Add hover effect
-* Pokemon detail screen (on click)
-* Enhance/fix pagination
-* Add name to Pokemon
+* Finish Pokemon detail screen
+* Update Pokemon list card to use css background
 * Search
-* Footer
+* //Footer
 * Refactor code
 * Offline cache
-* Maybe customise the theme
+* Remove material
 * Correct for mobile if not already
-* List view
+* List view mode (tile-to-list)
 * Line everything to a grid design
 * Animations
 * Swap pagination for continuous scroll (load in chunks based on view/scroll height)
