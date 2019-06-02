@@ -1,10 +1,16 @@
 .pokemon-card {
   background: white;
-  /* max-width: 750px; */
-  /* min-width: 400px; */
-  margin: 30px;
+  margin: 10px;
   padding: 20px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+  /* box-sizing: border-box; */
+}
+
+.pokemon-card-grid-style {
+  margin: -1px 0 0 -1px;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  background: white;
 }
 
 .card-heading {

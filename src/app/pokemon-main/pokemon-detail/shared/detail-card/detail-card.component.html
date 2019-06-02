@@ -1,4 +1,4 @@
-<div class="pokemon-card" [style.width]="width">
+<div [ngClass]="getClass()" [style.width]="width" [style.height]="height">
     <div *ngIf="!!heading" class="card-heading">
         <span>{{heading}}</span>
     </div>

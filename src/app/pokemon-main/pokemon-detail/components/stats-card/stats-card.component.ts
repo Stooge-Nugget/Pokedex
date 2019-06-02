@@ -13,7 +13,7 @@ export class StatsCardComponent implements OnInit {
     return `${this.barTotal}px`;
   }
 
-  private barTotal = 225;
+  private barTotal = 400; // Make this responsive
   private baseCap = 255;
 
   constructor() {}

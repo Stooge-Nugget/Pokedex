@@ -1,4 +1,25 @@
 .detail-container {
-    font-family: 'Roboto', sans-serif;
-    font-size: 10%;
+  width: 100%;
+  max-width: 1600px;
+  margin: 10px auto;
+  padding: 1px 0 0 1px;
+}
+
+.profile-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile-stats-row * {
+  flex-grow: 1;
+  min-width: 670px;
+}
+
+.species-data-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.species-data-row * {
+  flex-grow: 1;
 }

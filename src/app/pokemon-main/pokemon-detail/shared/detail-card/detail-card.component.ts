@@ -7,5 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class DetailCardComponent {
     @Input() heading: string;
-    @Input() width = '500px';
+    @Input() width = 'auto';
+    @Input() height = 'auto';
+    @Input() gridStyle = false;
+
+    getClass = () => !this.gridStyle ? 'pokemon-card' : 'pokemon-card-grid-style';
+
 }

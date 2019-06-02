@@ -1,4 +1,4 @@
-<app-detail-card width="720px">
+<app-detail-card [gridStyle]="true" height="350px">
   <div class="pokemon-name">
     <span>#{{pokemon.id | number:'3.0'}} • {{pokemon.name | uppercase}}</span>
     <div class="circle" [style.border-color]="typeOne"></div>
@@ -6,7 +6,7 @@
   </div>
   <div class="profile-content">
     <div class="sprite">
-      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="sprite">
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
       <!-- <svg #svgContainer viewBox="0 0 100 100">
         <image [attr.xlink:href]="pokemon.sprites.front_default"/>
       </svg> -->

@@ -1,6 +1,6 @@
-<app-detail-card heading="Evolution" width="fit-content">
+<app-detail-card [gridStyle]="true" heading="Evolution" height="155px">
   <div class="evolution-branch">
-    <div
+    <ng-container
       class="evolution-section"
       *ngFor="let pokemon of evolutionChain; let lastItem = last"
     >
@@ -13,6 +13,6 @@
         <span>{{ pokemon.name }}</span>
       </div>
       <div *ngIf="!lastItem" class="arrow-right"></div>
-    </div>
+    </ng-container>
   </div>
 </app-detail-card>
