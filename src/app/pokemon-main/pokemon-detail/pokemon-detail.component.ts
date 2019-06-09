@@ -22,13 +22,13 @@ export class PokemonDetailComponent implements OnInit {
   pokemon: Pokemon;
   species: Species;
   description: string;
-  genderRatio: { male: number; female: number };
+  genderRatio;
   metrics = [];
   stats: Stat[];
   moves: Move[];
   evolutionChain: EvolutionChain[];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.pokemon = this.route.snapshot.data.pokemonData.pokemon;
@@ -38,10 +38,7 @@ export class PokemonDetailComponent implements OnInit {
     let flavourText: any[] = this.species.flavor_text_entries;
     this.description = flavourText.find(f => f.language.name === 'en');
     this.metrics = this.getMetrics(this.pokemon, this.species);
-    this.genderRatio =
-      this.species.gender_rate === -1
-        ? null
-        : this.getGenderRatio(this.species.gender_rate);
+    this.genderRatio = this.getGenderRatio(this.species.gender_rate);
     this.stats = this.pokemon.stats.map(s => this.createStatMap(s)).reverse();
   }
 
@@ -93,6 +90,23 @@ export class PokemonDetailComponent implements OnInit {
   private getGenderRatio(genderRate: number) {
     const female = (genderRate / 8) * 100;
     const male = 100 - female;
-    return { male, female };
+
+    return [{
+      name: 'Male',
+      value: male,
+      format: '2.0',
+      symbol: '%',
+      icon: `${assetBase}male-icon.svg`,
+      iconText: 'Male Ratio'
+    },
+    {
+      name: 'Female',
+      value: female,
+      format: '2.0',
+      symbol: '%',
+      icon: `${assetBase}female-icon.svg`,
+      iconText: 'Female Ratio'
+    }
+    ]
   }
 }

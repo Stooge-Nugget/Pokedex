@@ -12,7 +12,7 @@
 
 .profile-stats-row * {
   flex-grow: 1;
-  min-width: 670px;
+  /* min-width: 670px; */
 }
 
 .species-data-row {

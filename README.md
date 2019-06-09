@@ -22,6 +22,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * Add pokemon list tile size option
 * Add Pokemon side nav list to detail view
 * Display loading overlay while resolver fetches data
+* Convert to Sass
 
 ## Development server
 

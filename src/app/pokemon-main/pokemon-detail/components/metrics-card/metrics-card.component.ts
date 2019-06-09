@@ -8,4 +8,7 @@ import { Component, Input } from '@angular/core';
 export class MetricsCardComponent {
     @Input()
     metrics = [];
+
+    @Input()
+    heading = 'Metrics';
 }

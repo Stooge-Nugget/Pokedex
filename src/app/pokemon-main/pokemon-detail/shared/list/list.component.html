@@ -1,4 +1,4 @@
-<app-detail-card [gridStyle]="true" [heading]="heading">
+<app-detail-card [gridStyle]="false" [heading]="heading">
   <div class="row row-heading">
     <div *ngFor="let heading of rowHeadings" class="heading" [style.width]="fieldWidth"
       (click)="handleClickSort(heading.name)">

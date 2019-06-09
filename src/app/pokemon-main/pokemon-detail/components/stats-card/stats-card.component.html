@@ -1,6 +1,6 @@
-<app-detail-card [gridStyle]="true" heading="Stats" height="350px">
+<app-detail-card [gridStyle]="false" heading="Stats" height="350px">
   <div class="stats-content">
-    <div class="stat" *ngFor="let stat of stats">
+    <div #statBar class="stat" *ngFor="let stat of stats">
       <div class="stat-heading">
         <img [src]="stat.icon" [alt]="stat.iconText" class="stat-icon" />
         <span>{{ stat.name }}</span>
