@@ -6,10 +6,12 @@
       [pokemon]="pokemon"
       [species]="species"
       [description]="description"
+      [ngStyle]="{ 'flex-basis': isLarge ? '500px' : 'unset' }"
     ></app-profile-card>
     <app-stats-card
       [layoutGrid]="layout$ | async"
       [stats]="stats"
+      [ngStyle]="{ 'flex-basis': isLarge ? '500px' : 'unset' }"
     ></app-stats-card>
   </div>
   <div class="species-data-row">

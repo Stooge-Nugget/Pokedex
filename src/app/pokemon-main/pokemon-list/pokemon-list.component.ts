@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
-  styleUrls: ['./pokemon-list.component.css']
+  styleUrls: ['./pokemon-list.component.scss']
 })
 export class PokemonListComponent implements OnInit {
   pokemon$: Observable<any>;
@@ -30,7 +30,7 @@ export class PokemonListComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.pokemon$ = this.getPokemon();
   }
 

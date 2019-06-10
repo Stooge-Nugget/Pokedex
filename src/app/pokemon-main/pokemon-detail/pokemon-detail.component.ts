@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   Pokemon,
@@ -11,18 +11,21 @@ import {
   Move
 } from '../pokemon.model';
 import { SimpleStateManagementService } from 'src/app/simple-state-management.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 const assetBase = 'assets/svg-icons/';
 
 @Component({
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
-  styleUrls: ['./pokemon-detail.component.css']
+  styleUrls: ['./pokemon-detail.component.scss']
 })
-export class PokemonDetailComponent implements OnInit {
+export class PokemonDetailComponent implements OnInit, OnDestroy {
   layout$: Observable<boolean>;
+
+  largeBreakpointSub: Subscription;
 
   pokemon: Pokemon;
   species: Species;
@@ -32,25 +35,38 @@ export class PokemonDetailComponent implements OnInit {
   stats: Stat[];
   moves: Move[];
   evolutionChain: EvolutionChain[];
+  isLarge = false;
 
-  constructor(private route: ActivatedRoute, private ssmSvc: SimpleStateManagementService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private ssmSvc: SimpleStateManagementService,
+    private breakpointObserver: BreakpointObserver // Wrap into a service
+  ) { }
 
   ngOnInit() {
-    this.layout$ = this.ssmSvc.store$.pipe(map(s => s.detailLayoutType === 'Grid'));
+    this.layout$ = this.ssmSvc.store$.pipe(
+      map(s => s.detailLayoutType === 'Grid')
+    );
     this.pokemon = this.route.snapshot.data.pokemonData.pokemon;
     this.species = this.route.snapshot.data.pokemonData.species;
     this.moves = this.route.snapshot.data.pokemonData.moves;
     this.evolutionChain = this.route.snapshot.data.pokemonData.evolutionChain;
-    let flavourText: any[] = this.species.flavor_text_entries;
+    const flavourText: any[] = this.species.flavor_text_entries;
     this.description = flavourText.find(f => f.language.name === 'en');
     this.metrics = this.getMetrics(this.pokemon, this.species);
     this.genderRatio = this.getGenderRatio(this.species.gender_rate);
     this.stats = this.pokemon.stats.map(s => this.createStatMap(s)).reverse();
+    this.largeBreakpointSub = this.breakpointObserver.observe([Breakpoints.Large, Breakpoints.XLarge])
+      .subscribe(r => this.isLarge = r.matches);
+  }
+
+  ngOnDestroy() {
+    this.largeBreakpointSub.unsubscribe();
   }
 
   private createStatMap(stat): Stat {
     let statMap;
-    for (var statName in StatNameDataMap) {
+    for (const statName in StatNameDataMap) {
       if (StatNameDataMap[statName] === stat.stat.name) {
         statMap = statName;
       }
@@ -97,22 +113,23 @@ export class PokemonDetailComponent implements OnInit {
     const female = (genderRate / 8) * 100;
     const male = 100 - female;
 
-    return [{
-      name: 'Male',
-      value: male,
-      format: '2.0',
-      symbol: '%',
-      icon: `${assetBase}male-icon.svg`,
-      iconText: 'Male Ratio'
-    },
-    {
-      name: 'Female',
-      value: female,
-      format: '2.0',
-      symbol: '%',
-      icon: `${assetBase}female-icon.svg`,
-      iconText: 'Female Ratio'
-    }
-    ]
+    return [
+      {
+        name: 'Male',
+        value: male,
+        format: '2.0',
+        symbol: '%',
+        icon: `${assetBase}male-icon.svg`,
+        iconText: 'Male Ratio'
+      },
+      {
+        name: 'Female',
+        value: female,
+        format: '2.0',
+        symbol: '%',
+        icon: `${assetBase}female-icon.svg`,
+        iconText: 'Female Ratio'
+      }
+    ];
   }
 }

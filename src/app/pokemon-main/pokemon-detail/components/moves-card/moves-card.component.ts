@@ -6,7 +6,7 @@ import { RowHeading } from '../../shared/list/list.component';
 @Component({
   selector: 'app-moves-card',
   templateUrl: './moves-card.component.html',
-  styleUrls: ['./moves-card.component.css'],
+  styleUrls: ['./moves-card.component.scss'],
   providers: [TitleCasePipe]
 })
 export class MovesCardComponent implements OnInit {

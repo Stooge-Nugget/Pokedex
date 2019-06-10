@@ -1,13 +1,14 @@
-import { Component, Input, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, HostListener, OnDestroy, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Stat } from 'src/app/pokemon-main/pokemon.model';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-stats-card',
   templateUrl: './stats-card.component.html',
-  styleUrls: ['./stats-card.component.css']
+  styleUrls: ['./stats-card.component.scss']
 })
-export class StatsCardComponent {
+export class StatsCardComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('statBar') statBarElement: ElementRef;
 
   @Input()
@@ -16,28 +17,58 @@ export class StatsCardComponent {
   @Input() stats: Stat[];
 
   get statBarWidth() {
-    return `${this.barTotal}px`;
-    // return `${65}%`;
+    return `calc(100% - ${this.leftIndent}px)`;
   }
 
-  private barTotal = 400; // Make this responsive
-  private baseCap = 255;
+  smallBreakpointSub: Subscription;
+  largeBreakpointSub: Subscription;
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  isSmall = false;
+  isLarge = false;
+
+  private barTotal = 400;
+  private baseCap = 255;
+  private get leftIndent() {
+    return this.isSmall ? 170 : 200;
+  };
+
+  constructor(private breakpointObserver: BreakpointObserver, private cd: ChangeDetectorRef) { }
+
+  ngOnInit() {
+    this.breakpointSetup();
+  }
+
+  ngAfterViewInit() {
+    this.recalculateBarTotal();
+    this.cd.detectChanges();
+  }
+
+  ngOnDestroy() {
+    this.smallBreakpointSub.unsubscribe();
+    this.largeBreakpointSub.unsubscribe();
+  }
 
   @HostListener('window:resize', ['$event'])
   recalculateBarTotal() {
-    const aboveThreshold = this.breakpointObserver.isMatched('(min-width: 1216px)');
-    const leftMarginSpacing = 250;
-    this.barTotal = !!this.statBarElement && !aboveThreshold
-      ? this.statBarElement.nativeElement.offsetWidth - leftMarginSpacing
-      : 400;
-      // : 400 * ((this.statBarElement.nativeElement.offsetWidth - leftMarginSpacing) / 400);
+    this.barTotal = this.statBarElement.nativeElement.offsetWidth - this.leftIndent;
   }
 
   getValueBarWidth(stat: Stat) {
     const basePercentage = (stat.baseStat / this.baseCap) * 100;
     const width = (this.barTotal * basePercentage) / 100;
     return `${width}px`;
+  }
+
+  private breakpointSetup() {
+    this.smallBreakpointSub = this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small])
+      .subscribe(r => {
+        this.isSmall = r.matches;
+        this.recalculateBarTotal();
+      });
+    this.largeBreakpointSub = this.breakpointObserver.observe([Breakpoints.Large, Breakpoints.XLarge])
+      .subscribe(r => {
+        this.isLarge = r.matches;
+        this.recalculateBarTotal();
+      });
   }
 }

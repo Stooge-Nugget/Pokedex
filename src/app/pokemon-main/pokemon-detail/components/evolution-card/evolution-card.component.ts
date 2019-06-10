@@ -4,7 +4,7 @@ import { EvolutionChain } from 'src/app/pokemon-main/pokemon.model';
 @Component({
   selector: 'app-evolution-card',
   templateUrl: './evolution-card.component.html',
-  styleUrls: ['./evolution-card.component.css']
+  styleUrls: ['./evolution-card.component.scss']
 })
 export class EvolutionCardComponent implements OnInit {
   @Input()

@@ -7,7 +7,7 @@ import { SimpleStateManagementService } from './simple-state-management.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
   animations: [slideInAnimation]
 })
 export class AppComponent implements OnInit {
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   constructor(private pokemonApiSvc: PokemonApiService, private ssmSvc: SimpleStateManagementService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   prepareRoute(outlet: RouterOutlet) {
