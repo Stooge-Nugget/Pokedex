@@ -1,23 +1,29 @@
 <mat-sidenav-container class="side-container">
-  <mat-sidenav #sidenav class="side-menu" mode="side" [(opened)]="opened">
+  <!-- <mat-sidenav #sidenav class="side-menu" mode="side" [(opened)]="opened">
     <mat-toolbar class="toolbar">Pokédex</mat-toolbar>
     <div class="menu-links">
       <button>Pokemon</button>
       <button>About</button>
     </div>
-  </mat-sidenav>
+  </mat-sidenav> -->
 
-  <mat-sidenav-content class="main-content">
-    <mat-toolbar>
-      <button mat-icon-button>
-        <mat-icon (click)='toggleSideNav()'>menu</mat-icon>
-      </button>
-      <div class="logo-container">
-        <img [src]="logoSrc" alt="en:Game Freak, en:Nintendo, en:The Pokémon Company [Public domain]">
-      </div>
-    </mat-toolbar>
-    <div [@routeAnimations]="prepareRoute(outlet)">
-      <router-outlet #outlet='outlet'></router-outlet>
+  <!-- <mat-sidenav-content class="main-content"> -->
+  <mat-toolbar>
+    <button (click)="toggleSideNav()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="logo-container">
+      <img
+        [src]="logoSrc"
+        alt="en:Game Freak, en:Nintendo, en:The Pokémon Company [Public domain]"
+      />
     </div>
-  </mat-sidenav-content>
+    <button (click)="toggleDetailGridView()" mat-icon-button>
+      <mat-icon class="button">view_module</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+  <!-- </mat-sidenav-content> -->
 </mat-sidenav-container>

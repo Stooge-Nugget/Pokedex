@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
+  @Input() layoutGrid: boolean;
   @Input() heading: string;
 
   @Input() set rowHeadings(value: RowHeading[]) {

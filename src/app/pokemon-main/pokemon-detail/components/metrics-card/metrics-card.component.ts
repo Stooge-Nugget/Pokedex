@@ -7,6 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class MetricsCardComponent {
     @Input()
+    layoutGrid: boolean;
+
+    @Input()
     metrics = [];
 
     @Input()

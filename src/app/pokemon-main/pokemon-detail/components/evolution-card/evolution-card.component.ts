@@ -8,9 +8,12 @@ import { EvolutionChain } from 'src/app/pokemon-main/pokemon.model';
 })
 export class EvolutionCardComponent implements OnInit {
   @Input()
+  layoutGrid: boolean;
+
+  @Input()
   evolutionChain: EvolutionChain[];
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

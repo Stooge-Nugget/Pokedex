@@ -10,10 +10,14 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 export class StatsCardComponent {
   @ViewChild('statBar') statBarElement: ElementRef;
 
+  @Input()
+  layoutGrid: boolean;
+
   @Input() stats: Stat[];
 
   get statBarWidth() {
     return `${this.barTotal}px`;
+    // return `${65}%`;
   }
 
   private barTotal = 400; // Make this responsive
@@ -28,6 +32,7 @@ export class StatsCardComponent {
     this.barTotal = !!this.statBarElement && !aboveThreshold
       ? this.statBarElement.nativeElement.offsetWidth - leftMarginSpacing
       : 400;
+      // : 400 * ((this.statBarElement.nativeElement.offsetWidth - leftMarginSpacing) / 400);
   }
 
   getValueBarWidth(stat: Stat) {

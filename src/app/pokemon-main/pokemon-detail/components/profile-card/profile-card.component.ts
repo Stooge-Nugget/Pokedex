@@ -10,6 +10,9 @@ export class ProfileCardComponent implements OnInit, AfterContentInit {
   @ViewChild('svgContainer') svgContainer: any;
 
   @Input()
+  layoutGrid: boolean;
+
+  @Input()
   set pokemon(value: Pokemon) {
     // place into method
     this.pokemonData = value;

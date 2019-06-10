@@ -10,6 +10,9 @@ import {
   EvolutionChain,
   Move
 } from '../pokemon.model';
+import { SimpleStateManagementService } from 'src/app/simple-state-management.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const assetBase = 'assets/svg-icons/';
 
@@ -19,6 +22,8 @@ const assetBase = 'assets/svg-icons/';
   styleUrls: ['./pokemon-detail.component.css']
 })
 export class PokemonDetailComponent implements OnInit {
+  layout$: Observable<boolean>;
+
   pokemon: Pokemon;
   species: Species;
   description: string;
@@ -28,9 +33,10 @@ export class PokemonDetailComponent implements OnInit {
   moves: Move[];
   evolutionChain: EvolutionChain[];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private ssmSvc: SimpleStateManagementService) { }
 
   ngOnInit() {
+    this.layout$ = this.ssmSvc.store$.pipe(map(s => s.detailLayoutType === 'Grid'));
     this.pokemon = this.route.snapshot.data.pokemonData.pokemon;
     this.species = this.route.snapshot.data.pokemonData.species;
     this.moves = this.route.snapshot.data.pokemonData.moves;

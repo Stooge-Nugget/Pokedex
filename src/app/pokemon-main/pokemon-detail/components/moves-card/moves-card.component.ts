@@ -10,6 +10,9 @@ import { RowHeading } from '../../shared/list/list.component';
   providers: [TitleCasePipe]
 })
 export class MovesCardComponent implements OnInit {
+  @Input()
+  layoutGrid: boolean;
+  
   @Input() set moves(value: Move[]) {
     this.moveData = value.map(m => this.extractMoveData(m));
   }

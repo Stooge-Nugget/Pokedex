@@ -54,3 +54,7 @@
 .menu-links button:focus {
   outline:0;
 }
+
+.button {
+  color: dimgray;
+}
