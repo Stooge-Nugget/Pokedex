@@ -1,16 +1,30 @@
 .arrow-right {
   width: 0;
   height: 0;
+  margin: 25px;
   border-top: 12px solid transparent;
   border-bottom: 12px solid transparent;
   border-left: 24px solid #cbcfd3;
-  margin: 25px;
 }
 
-.evolution-branch {
+.arrow-down {
+  width: 0;
+  height: 0;
+  margin: 10px 25px 25px 25px;
+  border-top: 24px solid #cbcfd3;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+}
+
+.evolution-branch,
+.evolution-branch-small {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
+  justify-content: space-evenly;
+}
+
+.evolution-branch-small {
+  flex-direction: column;
 }
 
 .evolution-section {
@@ -19,10 +33,15 @@
 }
 
 .pokemon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.evolution-sprite {
+.evolution-divider-h {
+  width: 75%;
+  height: 1px;
+  margin-top: 20px;
+  border: none;
+  border-top: 0.1px solid #eaeaea;
 }

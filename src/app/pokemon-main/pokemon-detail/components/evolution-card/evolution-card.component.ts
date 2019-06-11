@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EvolutionChain } from 'src/app/pokemon-main/pokemon.model';
+import { BreakpointService } from 'src/app/breakpoint.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-evolution-card',
@@ -13,7 +15,16 @@ export class EvolutionCardComponent implements OnInit {
   @Input()
   evolutionChain: EvolutionChain[];
 
-  constructor() { }
+  isXSmall = false;
+  private smallBreakpointSub: Subscription;
 
-  ngOnInit() { }
+  constructor(private breakpointSvc: BreakpointService) { }
+
+  ngOnInit() {
+    this.smallBreakpointSub = this.breakpointSvc.isXSmall$.subscribe(isXSmall => this.isXSmall = isXSmall);
+  }
+
+  ngOnDestroy(): void {
+    this.smallBreakpointSub.unsubscribe();
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild, ElementRef, HostListener, OnDestroy, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Stat } from 'src/app/pokemon-main/pokemon.model';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subscription } from 'rxjs';
+import { BreakpointService } from 'src/app/breakpoint.service';
 
 @Component({
   selector: 'app-stats-card',
@@ -32,7 +32,7 @@ export class StatsCardComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.isSmall ? 170 : 200;
   };
 
-  constructor(private breakpointObserver: BreakpointObserver, private cd: ChangeDetectorRef) { }
+  constructor(private breakpointSvc: BreakpointService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.breakpointSetup();
@@ -60,14 +60,14 @@ export class StatsCardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private breakpointSetup() {
-    this.smallBreakpointSub = this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small])
-      .subscribe(r => {
-        this.isSmall = r.matches;
+    this.smallBreakpointSub = this.breakpointSvc.isSmall$
+      .subscribe(isSmall => {
+        this.isSmall = isSmall;
         this.recalculateBarTotal();
       });
-    this.largeBreakpointSub = this.breakpointObserver.observe([Breakpoints.Large, Breakpoints.XLarge])
-      .subscribe(r => {
-        this.isLarge = r.matches;
+    this.largeBreakpointSub = this.breakpointSvc.isLarge$
+      .subscribe(isLarge => {
+        this.isLarge = isLarge;
         this.recalculateBarTotal();
       });
   }

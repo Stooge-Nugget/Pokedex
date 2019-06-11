@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Pokemon, getTypeColour } from 'src/app/pokemon-main/pokemon.model';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointService } from 'src/app/breakpoint.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './profile-card.component.html',
   styleUrls: ['./profile-card.component.scss']
 })
-export class ProfileCardComponent implements OnInit, OnDestroy {
+export class ProfileCardComponent {
   @ViewChild('svgContainer') svgContainer: any;
 
   @Input()
@@ -35,35 +35,22 @@ export class ProfileCardComponent implements OnInit, OnDestroy {
     return this.pokemonData;
   }
 
-  smallBreakpointSub: Subscription;
-  largeBreakpointSub: Subscription;
-
   abilities;
   typeOne = 'white';
   typeTwo = 'white';
-  isSmall = false;
-  isLarge = false;
+  isXSmall = false;
 
+  private smallBreakpointSub: Subscription;
   private pokemonData: Pokemon;
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    this.breakpointSetup();
-  }
+  constructor(private breakpointSvc: BreakpointService) { }
 
   ngOnInit() {
-    this.breakpointSetup();
+    this.smallBreakpointSub = this.breakpointSvc.isXSmall$.subscribe(isXSmall => this.isXSmall = isXSmall);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.smallBreakpointSub.unsubscribe();
-    this.largeBreakpointSub.unsubscribe();
-  }
-
-  private breakpointSetup() {
-    this.smallBreakpointSub = this.breakpointObserver.observe([Breakpoints.XSmall])
-      .subscribe(r => this.isSmall = r.matches);
-    this.largeBreakpointSub = this.breakpointObserver.observe([Breakpoints.Large, Breakpoints.XLarge])
-      .subscribe(r => this.isLarge = r.matches);
   }
 
   // Nothing to see here...

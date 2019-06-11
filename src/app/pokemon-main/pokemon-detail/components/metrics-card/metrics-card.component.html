@@ -1,5 +1,5 @@
-<app-detail-card [gridStyle]="layoutGrid" [heading]="heading" height="155px">
-    <div class="metric-content">
+<app-stateful-detail-card [heading]="heading" minHeight="155px">
+    <div [ngClass]="{'metric-content-large': !isXSmall, 'metric-content-small': isXSmall}" class="metric-content">
         <ng-container *ngFor="let metric of metrics; let lastItem=last">
             <div class="metric">
                 <div class="metric-heading">
@@ -11,7 +11,7 @@
                     <span class="metric-symbol">{{metric.symbol}}</span>
                 </div>
             </div>
-            <div class="metric-divider" *ngIf="!lastItem"></div>
+            <div [ngClass]="{'metric-divider-v': !isXSmall, 'metric-divider-h': isXSmall}" *ngIf="!lastItem"></div>
         </ng-container>
     </div>
-</app-detail-card>
+</app-stateful-detail-card>

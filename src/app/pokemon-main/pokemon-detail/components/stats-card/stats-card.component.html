@@ -1,4 +1,4 @@
-<app-detail-card [gridStyle]="layoutGrid" heading="Stats" height="350px">
+<app-stateful-detail-card heading="Stats" minHeight="350px">
   <div class="stats-content">
     <div #statBar class="stat" *ngFor="let stat of stats">
       <div class="stat-heading">
@@ -12,4 +12,4 @@
       </div>
     </div>
   </div>
-</app-detail-card>
+</app-stateful-detail-card>

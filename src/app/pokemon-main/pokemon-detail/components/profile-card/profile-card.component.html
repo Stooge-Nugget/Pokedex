@@ -1,16 +1,16 @@
-<app-detail-card [gridStyle]="layoutGrid" height="350px">
-  <div [ngClass]="{ 'pokemon-name-small': isSmall, 'pokemon-name': !isSmall }">
+<app-stateful-detail-card minHeight="350px">
+  <div [ngClass]="{ 'pokemon-name-small': isXSmall, 'pokemon-name': !isXSmall }">
     <span>#{{ pokemon.id | number: '3.0' }} • {{ pokemon.name | uppercase }}</span>
     <div class="circle" [style.border-color]="typeOne"></div>
     <div *ngIf="!!typeTwo" class="circle" [style.border-color]="typeTwo"></div>
   </div>
-  <div [ngClass]="{ 'profile-content': true, 'profile-content-small': isSmall }">
+  <div [ngClass]="{ 'profile-content': true, 'profile-content-small': isXSmall }">
     <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
     <!-- <svg #svgContainer viewBox="0 0 100 100">
               <image [attr.xlink:href]="pokemon.sprites.front_default"/>
             </svg> -->
-    <div *ngIf="!isSmall" class="profile-divider" [style.border-color]="typeOne"></div>
-    <div class="profile-text" [ngStyle]="{ 'max-width': isLarge ? '350px' : 'unset' }">
+    <div *ngIf="!isXSmall" class="profile-divider" [style.border-color]="typeOne"></div>
+    <div class="profile-text" [ngStyle]="{ 'max-width': (this.breakpointSvc.isLarge$ | async) ? '350px' : 'unset' }">
       <span>Abilities</span>
       <p class="light-text">
         {{ abilities }}
@@ -21,4 +21,4 @@
       </p>
     </div>
   </div>
-</app-detail-card>
+</app-stateful-detail-card>

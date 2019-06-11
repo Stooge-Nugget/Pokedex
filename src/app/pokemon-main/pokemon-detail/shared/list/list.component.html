@@ -1,4 +1,4 @@
-<app-detail-card [gridStyle]="layoutGrid" [heading]="heading">
+<app-stateful-detail-card [heading]="heading">
   <div class="row row-heading">
     <div *ngFor="let heading of rowHeadings" class="heading" [style.width]="fieldWidth"
       (click)="handleClickSort(heading.name)">
@@ -11,4 +11,4 @@
       {{prop.value}}
     </span>
   </div>
-</app-detail-card>
+</app-stateful-detail-card>

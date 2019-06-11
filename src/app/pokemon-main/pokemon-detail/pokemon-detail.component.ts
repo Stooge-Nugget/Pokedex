@@ -13,7 +13,7 @@ import {
 import { SimpleStateManagementService } from 'src/app/simple-state-management.service';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointService } from 'src/app/breakpoint.service';
 
 const assetBase = 'assets/svg-icons/';
 
@@ -40,7 +40,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private ssmSvc: SimpleStateManagementService,
-    private breakpointObserver: BreakpointObserver // Wrap into a service
+    private breakpointSvc: BreakpointService
   ) { }
 
   ngOnInit() {
@@ -56,8 +56,8 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     this.metrics = this.getMetrics(this.pokemon, this.species);
     this.genderRatio = this.getGenderRatio(this.species.gender_rate);
     this.stats = this.pokemon.stats.map(s => this.createStatMap(s)).reverse();
-    this.largeBreakpointSub = this.breakpointObserver.observe([Breakpoints.Large, Breakpoints.XLarge])
-      .subscribe(r => this.isLarge = r.matches);
+    this.largeBreakpointSub = this.breakpointSvc.isLarge$
+      .subscribe(isLarge => this.isLarge = isLarge);
   }
 
   ngOnDestroy() {

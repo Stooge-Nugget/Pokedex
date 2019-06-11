@@ -1,8 +1,6 @@
-<div [ngClass]="getClass()" [style.width]="width" [style.min-height]="height"> <!-- update input for min-height -->
+<div [ngClass]="getClass()" [style.width]="width" [style.min-height]="minHeight">
     <div *ngIf="!!heading" class="card-heading">
         <span>{{heading}}</span>
     </div>
-    <!-- wrap content? -->
     <ng-content></ng-content>
-    <!-- class="detail-card-content" -->
 </div>
